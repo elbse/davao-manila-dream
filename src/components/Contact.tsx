@@ -3,8 +3,8 @@ import { Mail, Phone, MapPin } from "lucide-react";
 
 const Contact = () => {
   const contactInfo = [
-    { icon: Mail, value: "your.email@example.com", href: "mailto:your.email@example.com" },
-    { icon: Phone, value: "+63 912 345 6789", href: "tel:+639123456789" },
+    { icon: Mail, value: "charissepriego0140@gmail.com", href: "mailto:charissepriego0140@gmail.com" },
+    { icon: Phone, value: "+63 951 270 4152", href: "tel:+639512704152" },
     { icon: MapPin, value: "University of Mindanao, Davao City", href: null },
   ];
 

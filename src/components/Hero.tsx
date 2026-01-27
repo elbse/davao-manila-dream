@@ -86,13 +86,7 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 1 }}
           className="inline-block"
         >
-          <div className="relative px-8 py-3 border border-foreground">
-            <span className="font-medium tracking-wider text-foreground">Charisse Priego</span>
-            <div className="absolute -top-1 -left-1 w-3 h-3 border-t border-l border-foreground" />
-            <div className="absolute -top-1 -right-1 w-3 h-3 border-t border-r border-foreground" />
-            <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b border-l border-foreground" />
-            <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b border-r border-foreground" />
-          </div>
+          {/*  */}
         </motion.div>
 
         <motion.p 

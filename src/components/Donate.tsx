@@ -3,7 +3,10 @@ import { Smartphone, QrCode } from "lucide-react";
 
 const Donate = () => {
   return (
-    <section id="donate" className="py-32 px-6 bg-foreground text-background relative overflow-hidden">
+    <section
+      id="donate"
+      className="py-32 px-6 bg-foreground text-background relative overflow-hidden"
+    >
       {/* Animated background */}
       <motion.div
         animate={{ rotate: 360 }}
@@ -48,17 +51,19 @@ const Donate = () => {
 
             <div className="flex items-center justify-center gap-3 mb-8">
               <Smartphone className="w-5 h-5" />
-              <span className="uppercase tracking-[0.3em] text-sm font-medium">GCash</span>
+              <span className="uppercase tracking-[0.3em] text-sm font-medium">
+                GCash
+              </span>
             </div>
 
             {/* QR Code Placeholder */}
             <div className="w-52 h-52 mx-auto mb-8 bg-secondary border-2 border-dashed border-muted flex flex-col items-center justify-center">
-              <QrCode className="w-12 h-12 text-muted-foreground mb-3" />
-              <p className="text-muted-foreground text-sm text-center">
-                GCash QR Code
-              </p>
               <p className="text-muted-foreground/60 text-xs mt-1">
-                (Upload your QR)
+                <img
+                  src="/qr-code.jpg"
+                  alt="GCash QR Code"
+                  className="w-200 h-200 object-contain"
+                />
               </p>
             </div>
 

@@ -3,7 +3,7 @@ import { Calendar, MapPin, Users, Plane } from "lucide-react";
 
 const About = () => {
   const details = [
-    { icon: Calendar, label: "Date", value: "March 4-7, 2025" },
+    { icon: Calendar, label: "Date", value: "March 3-6, 2026" },
     { icon: MapPin, label: "Destination", value: "Manila, Philippines" },
     { icon: Plane, label: "From", value: "Davao City" },
     { icon: Users, label: "Organized by", value: "University of Mindanao" },
