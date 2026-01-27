@@ -2,24 +2,28 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 const Contact = () => {
+  const contactInfo = [
+    { icon: Mail, value: "your.email@example.com", href: "mailto:your.email@example.com" },
+    { icon: Phone, value: "+63 912 345 6789", href: "tel:+639123456789" },
+    { icon: MapPin, value: "University of Mindanao, Davao City", href: null },
+  ];
+
   return (
-    <section id="contact" className="py-24 px-6 bg-secondary">
-      <div className="max-w-3xl mx-auto text-center">
+    <section id="contact" className="py-32 px-6 bg-background relative">
+      <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
+          className="text-center mb-16"
         >
-          <h2 className="font-serif text-3xl md:text-5xl font-light mb-6 text-foreground">
-            Get In Touch
+          <span className="text-muted-foreground uppercase tracking-[0.3em] text-xs">
+            Reach Out
+          </span>
+          <h2 className="font-serif text-4xl md:text-6xl font-light mt-4 text-foreground">
+            Get In <span className="italic">Touch</span>
           </h2>
-          <div className="w-16 h-px bg-foreground mx-auto mb-8" />
-          <p className="text-muted-foreground text-lg leading-relaxed mb-12">
-            If you wish to extend your support or have any questions, please
-            don't hesitate to reach out. I am deeply grateful for your
-            consideration.
-          </p>
         </motion.div>
 
         <motion.div
@@ -27,34 +31,29 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="space-y-6"
+          className="grid md:grid-cols-3 gap-8 mb-16"
         >
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
-            <a
-              href="mailto:your.email@example.com"
-              className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
+          {contactInfo.map((item, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ y: -4 }}
+              className="text-center p-8 border border-border hover:border-foreground transition-colors group"
             >
-              <Mail className="w-5 h-5" />
-              <span>your.email@example.com</span>
-            </a>
-            <a
-              href="tel:+639123456789"
-              className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Phone className="w-5 h-5" />
-              <span>+63 912 345 6789</span>
-            </a>
-          </div>
-          <div className="flex items-center justify-center gap-3 text-muted-foreground">
-            <MapPin className="w-5 h-5" />
-            <span>University of Mindanao, Davao City</span>
-          </div>
-          <p className="mt-6 font-serif text-xl text-foreground">
-            Charisse Priego
-          </p>
-          <p className="text-muted-foreground text-sm">
-            BS Computer Science, 3rd Year
-          </p>
+              <div className="w-12 h-12 border border-foreground/20 group-hover:border-foreground mx-auto flex items-center justify-center mb-4 transition-colors">
+                <item.icon className="w-5 h-5 text-foreground" />
+              </div>
+              {item.href ? (
+                <a
+                  href={item.href}
+                  className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+                >
+                  {item.value}
+                </a>
+              ) : (
+                <span className="text-muted-foreground text-sm">{item.value}</span>
+              )}
+            </motion.div>
+          ))}
         </motion.div>
 
         <motion.div
@@ -62,10 +61,26 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="mt-16 pt-16 border-t border-border"
+          className="text-center"
         >
-          <p className="font-serif text-2xl md:text-3xl italic text-foreground mb-4">
-            "Education is the passport to the future."
+          <div className="inline-block relative">
+            <div className="font-serif text-3xl text-foreground mb-2">Charisse Priego</div>
+            <p className="text-muted-foreground">BS Computer Science, 3rd Year</p>
+            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-12 h-px bg-foreground/30" />
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.6 }}
+          className="mt-24 pt-16 border-t border-border text-center"
+        >
+          <p className="font-serif text-2xl md:text-4xl italic text-foreground mb-4 leading-relaxed">
+            "Education is the passport
+            <br />
+            to the future."
           </p>
           <p className="text-muted-foreground">— Malcolm X</p>
         </motion.div>

@@ -1,70 +1,83 @@
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Users } from "lucide-react";
+import { Calendar, MapPin, Users, Plane } from "lucide-react";
 
 const About = () => {
   const details = [
     { icon: Calendar, label: "Date", value: "March 4-7, 2025" },
     { icon: MapPin, label: "Destination", value: "Manila, Philippines" },
+    { icon: Plane, label: "From", value: "Davao City" },
     { icon: Users, label: "Organized by", value: "University of Mindanao" },
   ];
 
   return (
-    <section id="about" className="py-24 px-6 bg-secondary">
-      <div className="max-w-4xl mx-auto">
+    <section id="about" className="py-32 px-6 bg-foreground text-background relative overflow-hidden">
+      {/* Diagonal lines pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 50px,
+            hsl(var(--background)) 50px,
+            hsl(var(--background)) 51px
+          )`
+        }} />
+      </div>
+
+      <div className="max-w-5xl mx-auto relative">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="grid md:grid-cols-2 gap-16 items-center"
         >
-          <h2 className="font-serif text-3xl md:text-5xl font-light mb-6 text-foreground">
-            The Journey Ahead
-          </h2>
-          <div className="w-16 h-px bg-foreground mx-auto mb-8" />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="prose prose-lg max-w-none text-center"
-        >
-          <p className="text-muted-foreground text-lg md:text-xl leading-relaxed mb-8">
-            I am a 3rd year Computer Science student at the{" "}
-            <strong className="text-foreground">University of Mindanao</strong>,
-            Davao City. This March, our department is organizing an educational
-            tour to Manila — an opportunity that promises to be transformative
-            for my academic and professional growth.
-          </p>
-          <p className="text-muted-foreground text-lg md:text-xl leading-relaxed">
-            This tour will expose us to the thriving tech industries in the
-            capital, allowing us to witness firsthand how leading companies
-            operate, innovate, and shape the future of technology in the
-            Philippines.
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16"
-        >
-          {details.map((item, index) => (
-            <div
-              key={index}
-              className="text-center p-6 bg-background border border-border"
+          <div>
+            <motion.span 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="text-background/60 uppercase tracking-[0.3em] text-xs"
             >
-              <item.icon className="w-6 h-6 mx-auto mb-4 text-muted-foreground" />
-              <p className="text-sm uppercase tracking-wider text-muted-foreground mb-2">
-                {item.label}
-              </p>
-              <p className="font-serif text-lg text-foreground">{item.value}</p>
-            </div>
-          ))}
+              About The Journey
+            </motion.span>
+            <h2 className="font-serif text-4xl md:text-6xl font-light mt-4 mb-8">
+              The Journey
+              <br />
+              <span className="italic">Ahead</span>
+            </h2>
+            <div className="w-24 h-px bg-background/30 mb-8" />
+            <p className="text-background/80 text-lg leading-relaxed mb-6">
+              I am a 3rd year Computer Science student at the{" "}
+              <strong className="text-background">University of Mindanao</strong>,
+              Davao City.
+            </p>
+            <p className="text-background/70 leading-relaxed">
+              This March, our department is organizing an educational
+              tour to Manila — an opportunity that promises to be transformative
+              for my academic and professional growth, exposing us to the thriving
+              tech industries in the capital.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            {details.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-background/5 backdrop-blur border border-background/10 p-6 group hover:bg-background/10 transition-colors"
+              >
+                <item.icon className="w-5 h-5 mb-4 text-background/60 group-hover:text-background transition-colors" />
+                <p className="text-xs uppercase tracking-wider text-background/50 mb-1">
+                  {item.label}
+                </p>
+                <p className="font-serif text-background">{item.value}</p>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
