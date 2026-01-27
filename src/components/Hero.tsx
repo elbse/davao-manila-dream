@@ -22,6 +22,7 @@ const Hero = () => {
           <br />
           <span className="italic">The World Beyond</span>
         </h1>
+        <p className="text-foreground font-medium text-lg mb-4">— Charisse Priego</p>
         <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed">
           Supporting a Computer Science student's educational journey to Manila
           for industry exposure and cultural immersion.
