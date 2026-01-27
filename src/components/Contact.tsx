@@ -49,6 +49,12 @@ const Contact = () => {
             <MapPin className="w-5 h-5" />
             <span>University of Mindanao, Davao City</span>
           </div>
+          <p className="mt-6 font-serif text-xl text-foreground">
+            Charisse Priego
+          </p>
+          <p className="text-muted-foreground text-sm">
+            BS Computer Science, 3rd Year
+          </p>
         </motion.div>
 
         <motion.div
