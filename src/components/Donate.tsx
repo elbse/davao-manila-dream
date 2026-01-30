@@ -1,5 +1,32 @@
 import { motion } from "framer-motion";
-import { Smartphone, QrCode } from "lucide-react";
+import { Smartphone, Copy, Check } from "lucide-react";
+import { useState } from "react";
+
+const GCASH_NUMBER = "09123456789"; // Replace with your actual GCash number
+
+const GCashNumber = () => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(GCASH_NUMBER);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <button
+      onClick={handleCopy}
+      className="group flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/80 px-4 py-2 rounded-lg transition-colors mx-auto mt-2"
+    >
+      <span className="font-mono text-lg tracking-wider">{GCASH_NUMBER}</span>
+      {copied ? (
+        <Check className="w-4 h-4 text-green-600" />
+      ) : (
+        <Copy className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+      )}
+    </button>
+  );
+};
 
 const Donate = () => {
   return (
@@ -69,11 +96,12 @@ const Donate = () => {
               <p className="font-serif text-2xl text-foreground mb-2">
                 Charisse Priego
               </p>
-              <p className="text-muted-foreground text-sm">
-                Scan the QR code above
-              </p>
-              <p className="text-muted-foreground text-sm">
-                or search my name on GCash
+              
+              {/* Copyable GCash Number */}
+              <GCashNumber />
+              
+              <p className="text-muted-foreground text-sm mt-4">
+                Scan the QR code or copy the number above
               </p>
             </div>
           </div>
