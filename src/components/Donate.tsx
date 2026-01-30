@@ -56,15 +56,13 @@ const Donate = () => {
               </span>
             </div>
 
-            {/* QR Code Placeholder */}
-            <div className="w-52 h-52 mx-auto mb-8 bg-secondary border-2 border-dashed border-muted flex flex-col items-center justify-center">
-              <p className="text-muted-foreground/60 text-xs mt-1">
-                <img
-                  src="/qr-code.jpg"
-                  alt="GCash QR Code"
-                  className="w-200 h-200 object-contain"
-                />
-              </p>
+            {/* QR Code */}
+            <div className="w-72 h-72 md:w-80 md:h-80 mx-auto mb-8 bg-white p-3 rounded-lg shadow-lg">
+              <img
+                src="/qr-code.jpg"
+                alt="GCash QR Code"
+                className="w-full h-full object-contain"
+              />
             </div>
 
             <div className="text-center">
