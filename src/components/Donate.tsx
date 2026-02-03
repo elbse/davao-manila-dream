@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Smartphone, Copy, Check } from "lucide-react";
+import { Smartphone, Copy, Check, Sparkles } from "lucide-react";
 import { useState } from "react";
 
 const GCASH_NUMBER = "09123456789"; // Replace with your actual GCash number
@@ -16,13 +16,13 @@ const GCashNumber = () => {
   return (
     <button
       onClick={handleCopy}
-      className="group flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/80 px-4 py-2 rounded-lg transition-colors mx-auto mt-2"
+      className="group flex items-center justify-center gap-3 glass hover:bg-secondary px-5 py-3 rounded-lg transition-all mx-auto mt-3 glow-sm"
     >
-      <span className="font-mono text-lg tracking-wider">{GCASH_NUMBER}</span>
+      <span className="font-mono text-lg tracking-wider text-foreground">{GCASH_NUMBER}</span>
       {copied ? (
-        <Check className="w-4 h-4 text-green-600" />
+        <Check className="w-4 h-4 text-accent" />
       ) : (
-        <Copy className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+        <Copy className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
       )}
     </button>
   );
@@ -32,18 +32,24 @@ const Donate = () => {
   return (
     <section
       id="donate"
-      className="py-32 px-6 bg-foreground text-background relative overflow-hidden"
+      className="py-32 px-6 bg-gradient-to-b from-secondary to-background relative overflow-hidden"
     >
-      {/* Animated background */}
+      {/* Animated background orbs */}
       <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
-        className="absolute -top-1/2 -right-1/2 w-full h-full border border-background/5 rounded-full"
+        animate={{ 
+          scale: [1, 1.3, 1],
+          opacity: [0.1, 0.2, 0.1]
+        }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/20 rounded-full blur-3xl"
       />
       <motion.div
-        animate={{ rotate: -360 }}
-        transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-        className="absolute -bottom-1/2 -left-1/2 w-full h-full border border-background/5 rounded-full"
+        animate={{ 
+          scale: [1.2, 1, 1.2],
+          opacity: [0.1, 0.15, 0.1]
+        }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/15 rounded-full blur-3xl"
       />
 
       <div className="max-w-4xl mx-auto relative">
@@ -54,11 +60,15 @@ const Donate = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-background/50 uppercase tracking-[0.3em] text-xs">
-            Take Action
-          </span>
-          <h2 className="font-serif text-4xl md:text-6xl font-light mt-4">
-            Send Your <span className="italic">Support</span>
+          <div className="inline-flex items-center gap-2 mb-4">
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-primary uppercase tracking-[0.3em] text-xs font-medium">
+              Take Action
+            </span>
+            <Sparkles className="w-4 h-4 text-primary" />
+          </div>
+          <h2 className="font-serif text-4xl md:text-6xl font-medium text-foreground">
+            Send Your <span className="italic text-primary">Support</span>
           </h2>
         </motion.div>
 
@@ -69,22 +79,21 @@ const Donate = () => {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="max-w-md mx-auto"
         >
-          <div className="bg-background text-foreground p-10 relative">
-            {/* Corner decorations */}
-            <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-foreground" />
-            <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-foreground" />
-            <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-foreground" />
-            <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-foreground" />
-
+          <div className="glass glow p-10 rounded-2xl relative">
+            {/* Gradient border effect */}
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 via-transparent to-accent/20 -z-10" />
+            
             <div className="flex items-center justify-center gap-3 mb-8">
-              <Smartphone className="w-5 h-5" />
-              <span className="uppercase tracking-[0.3em] text-sm font-medium">
+              <div className="p-2 rounded-lg bg-primary/10">
+                <Smartphone className="w-5 h-5 text-primary" />
+              </div>
+              <span className="uppercase tracking-[0.3em] text-sm font-medium text-foreground">
                 GCash
               </span>
             </div>
 
             {/* QR Code */}
-            <div className="w-72 h-72 md:w-80 md:h-80 mx-auto mb-8 bg-white p-3 rounded-lg shadow-lg">
+            <div className="w-72 h-72 md:w-80 md:h-80 mx-auto mb-8 bg-white p-4 rounded-xl shadow-2xl">
               <img
                 src="/qr-code.jpg"
                 alt="GCash QR Code"
@@ -111,7 +120,7 @@ const Donate = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="text-background/60 text-center text-sm mt-8 italic"
+            className="text-muted-foreground text-center text-sm mt-8 italic"
           >
             "Every peso counts and brings me closer to this dream."
           </motion.p>

@@ -30,13 +30,20 @@ const Purpose = () => {
   ];
 
   return (
-    <section className="py-32 px-6 bg-secondary relative overflow-hidden">
+    <section className="py-32 px-6 bg-background relative overflow-hidden">
       {/* Large background text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-        <span className="font-serif text-[20vw] font-light text-foreground/[0.02] whitespace-nowrap select-none">
+        <span className="font-serif text-[20vw] font-medium text-primary/[0.03] whitespace-nowrap select-none">
           WHY
         </span>
       </div>
+
+      {/* Gradient orbs */}
+      <motion.div
+        animate={{ x: [0, 50, 0], y: [0, -30, 0] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-accent/10 rounded-full blur-3xl"
+      />
 
       <div className="max-w-5xl mx-auto relative">
         <motion.div
@@ -46,15 +53,15 @@ const Purpose = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-20"
         >
-          <span className="text-muted-foreground uppercase tracking-[0.3em] text-xs">
+          <span className="text-primary uppercase tracking-[0.3em] text-xs font-medium">
             The Purpose
           </span>
-          <h2 className="font-serif text-4xl md:text-6xl font-light mt-4 text-foreground">
-            Why This <span className="italic">Matters</span>
+          <h2 className="font-serif text-4xl md:text-6xl font-medium mt-4 text-foreground">
+            Why This <span className="italic text-primary">Matters</span>
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {purposes.map((item, index) => (
             <motion.div
               key={index}
@@ -62,26 +69,23 @@ const Purpose = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative bg-background p-10 hover:bg-foreground transition-colors duration-500"
+              className="group glass rounded-2xl p-8 hover:glow transition-all duration-500"
             >
               <div className="flex items-start gap-6">
                 <div className="relative">
-                  <item.icon className="w-8 h-8 text-foreground group-hover:text-background transition-colors duration-500" />
-                  <div className="absolute -inset-3 border border-foreground/20 group-hover:border-background/20 transition-colors duration-500" />
+                  <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 group-hover:from-primary/30 group-hover:to-accent/30 transition-all duration-500">
+                    <item.icon className="w-6 h-6 text-primary" />
+                  </div>
                 </div>
                 <div>
-                  <h3 className="font-serif text-xl mb-3 text-foreground group-hover:text-background transition-colors duration-500">
+                  <h3 className="font-serif text-xl mb-3 text-foreground group-hover:text-primary transition-colors duration-500">
                     {item.title}
                   </h3>
-                  <p className="text-muted-foreground group-hover:text-background/70 leading-relaxed transition-colors duration-500">
+                  <p className="text-muted-foreground leading-relaxed">
                     {item.description}
                   </p>
                 </div>
               </div>
-              
-              {/* Corner accent */}
-              <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-foreground/10 group-hover:border-background/20 transition-colors duration-500" />
-              <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-foreground/10 group-hover:border-background/20 transition-colors duration-500" />
             </motion.div>
           ))}
         </div>
