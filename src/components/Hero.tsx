@@ -126,10 +126,18 @@ const Hero = () => {
           className="mb-8"
         >
           <div className="relative inline-block">
-            <Avatar className="w-28 h-28 md:w-32 md:h-32 border-2 border-primary/30 mx-auto ring-4 ring-primary/10 ring-offset-4 ring-offset-background">
-              <AvatarImage src="/picture.jpg" alt="Charisse Priego" />
-              <AvatarFallback className="text-2xl font-serif bg-gradient-to-br from-primary to-accent text-primary-foreground">CP</AvatarFallback>
-            </Avatar>
+<Avatar className="w-28 h-28 md:w-32 md:h-32 border-2 border-primary/30 mx-auto ring-4 ring-primary/10 ring-offset-4 ring-offset-background overflow-hidden">
+  <AvatarImage
+    src="/picture.jpg"
+    alt="Charisse Priego"
+    className="object-cover object-[50%_35%]"
+  />
+  <AvatarFallback className="text-2xl font-serif bg-gradient-to-br from-primary to-accent text-primary-foreground">
+    CP
+  </AvatarFallback>
+</Avatar>
+
+
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}

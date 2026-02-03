@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Smartphone, Copy, Check, Sparkles } from "lucide-react";
 import { useState } from "react";
 
-const GCASH_NUMBER = "09123456789"; // Replace with your actual GCash number
+const GCASH_NUMBER = "09512704152"; 
 
 const GCashNumber = () => {
   const [copied, setCopied] = useState(false);

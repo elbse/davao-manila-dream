@@ -7,9 +7,9 @@ const Itinerary = () => {
       date: "March 3",
       title: "Departure",
       activities: [
-        "Flight from Davao to Manila",
-        "Arrival at NAIA",
+        "Travel from Davao to Manila",
         "Company Visit #1",
+        "Lunch Break",
         "Company Visit #2",
         "Welcome Dinner",
       ],
@@ -19,8 +19,12 @@ const Itinerary = () => {
       date: "March 4",
       title: "Cultivating Connections",
       activities: [
+        "Breakfast",
         "Heritage/ Cultural Tour",
+        "Lunch Break",
         "Company Visit #3",
+        "Dinner",
+        "Overnight Stay",
       ],
     },
     {
@@ -28,8 +32,12 @@ const Itinerary = () => {
       date: "March 5",
       title: "Enhancing Experiences",
       activities: [
+        "Breakfast",
         "Company Visit #4",
+        "Lunch Break",
         "Enchanted Kingdom Visit",
+        "Dinner",
+        "Overnight Stay",
       ],
     },
     {
@@ -37,8 +45,10 @@ const Itinerary = () => {
       date: "March 6",
       title: "Homeward",
       activities: [
+        "Breakfast",
         "Final Company Visit",
-        "Shopping at Mall of Asia",
+        "Lunch Break",
+        "Shopping Time",
         "Departure from Manila",
         "Arrival in Davao City",
       ],
