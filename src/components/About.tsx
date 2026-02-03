@@ -10,19 +10,18 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-32 px-6 bg-foreground text-background relative overflow-hidden">
-      {/* Diagonal lines pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 50px,
-            hsl(var(--background)) 50px,
-            hsl(var(--background)) 51px
-          )`
-        }} />
-      </div>
+    <section id="about" className="py-32 px-6 bg-secondary relative overflow-hidden">
+      {/* Gradient orbs */}
+      <motion.div
+        animate={{ scale: [1, 1.2, 1] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl"
+      />
+      <motion.div
+        animate={{ scale: [1.2, 1, 1.2] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-accent/10 rounded-full blur-3xl"
+      />
 
       <div className="max-w-5xl mx-auto relative">
         <motion.div
@@ -37,22 +36,22 @@ const About = () => {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="text-background/60 uppercase tracking-[0.3em] text-xs"
+              className="text-primary uppercase tracking-[0.3em] text-xs font-medium"
             >
               About The Journey
             </motion.span>
-            <h2 className="font-serif text-4xl md:text-6xl font-light mt-4 mb-8">
+            <h2 className="font-serif text-4xl md:text-6xl font-medium mt-4 mb-8 text-foreground">
               The Journey
               <br />
-              <span className="italic">Ahead</span>
+              <span className="italic text-primary">Ahead</span>
             </h2>
-            <div className="w-24 h-px bg-background/30 mb-8" />
-            <p className="text-background/80 text-lg leading-relaxed mb-6">
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent rounded-full mb-8" />
+            <p className="text-foreground text-lg leading-relaxed mb-6">
               I am a 3rd year Computer Science student at the{" "}
-              <strong className="text-background">University of Mindanao</strong>,
+              <strong className="text-primary">University of Mindanao</strong>,
               Davao City.
             </p>
-            <p className="text-background/70 leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed">
               This March, our department is organizing an educational
               tour to Manila — an opportunity that promises to be transformative
               for my academic and professional growth, exposing us to the thriving
@@ -68,13 +67,15 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-background/5 backdrop-blur border border-background/10 p-6 group hover:bg-background/10 transition-colors"
+                className="glass rounded-xl p-6 group hover:glow-sm transition-all duration-300"
               >
-                <item.icon className="w-5 h-5 mb-4 text-background/60 group-hover:text-background transition-colors" />
-                <p className="text-xs uppercase tracking-wider text-background/50 mb-1">
+                <div className="p-2 rounded-lg bg-primary/10 w-fit mb-4 group-hover:bg-primary/20 transition-colors">
+                  <item.icon className="w-5 h-5 text-primary" />
+                </div>
+                <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">
                   {item.label}
                 </p>
-                <p className="font-serif text-background">{item.value}</p>
+                <p className="font-serif text-foreground">{item.value}</p>
               </motion.div>
             ))}
           </div>

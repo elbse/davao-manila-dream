@@ -41,7 +41,7 @@ const Countdown = () => {
   ];
 
   return (
-    <div className="flex gap-4 md:gap-6 justify-center mt-8">
+    <div className="flex gap-3 md:gap-5 justify-center mt-12">
       {timeUnits.map((unit, index) => (
         <motion.div
           key={unit.label}
@@ -50,10 +50,10 @@ const Countdown = () => {
           transition={{ delay: 1.4 + index * 0.1 }}
           className="text-center"
         >
-          <div className="bg-foreground text-background font-serif text-2xl md:text-4xl w-14 h-14 md:w-20 md:h-20 flex items-center justify-center">
+          <div className="glass glow-sm font-serif text-2xl md:text-4xl w-16 h-16 md:w-24 md:h-24 flex items-center justify-center rounded-lg text-primary">
             {String(unit.value).padStart(2, "0")}
           </div>
-          <p className="text-xs uppercase tracking-wider text-muted-foreground mt-2">
+          <p className="text-xs uppercase tracking-wider text-muted-foreground mt-3">
             {unit.label}
           </p>
         </motion.div>
@@ -69,41 +69,48 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-center px-6 relative bg-background overflow-hidden">
-      {/* Animated Background Pattern */}
+      {/* Gradient Orbs */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.03 }}
-          transition={{ duration: 2 }}
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)`,
-            backgroundSize: "40px 40px",
-          }}
-        />
-        {/* Floating circles */}
-        <motion.div
           animate={{ 
-            y: [0, -20, 0],
-            rotate: [0, 180, 360]
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3]
           }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/4 left-1/4 w-64 h-64 border border-foreground/10 rounded-full"
-        />
-        <motion.div
-          animate={{ 
-            y: [0, 20, 0],
-            rotate: [360, 180, 0]
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 border border-foreground/5 rounded-full"
-        />
-        <motion.div
-          animate={{ scale: [1, 1.1, 1] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-foreground/5 rounded-full"
+          className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{ 
+            scale: [1.2, 1, 1.2],
+            opacity: [0.2, 0.4, 0.2]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-accent/15 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{ 
+            y: [0, -30, 0],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-primary/10 rounded-full"
+        />
+        <motion.div
+          animate={{ 
+            y: [0, 30, 0],
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-accent/10 rounded-full"
         />
       </div>
+
+      {/* Grid pattern overlay */}
+      <div 
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
+          backgroundSize: "60px 60px",
+        }}
+      />
 
       <motion.div
         initial={{ opacity: 0, y: 50 }}
@@ -116,19 +123,26 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-6"
+          className="mb-8"
         >
-          <Avatar className="w-24 h-24 md:w-28 md:h-28 border-2 border-foreground/20 mx-auto">
-            <AvatarImage src="/placeholder.svg" alt="Charisse Priego" />
-            <AvatarFallback className="text-2xl font-serif bg-foreground text-background">CP</AvatarFallback>
-          </Avatar>
+          <div className="relative inline-block">
+            <Avatar className="w-28 h-28 md:w-32 md:h-32 border-2 border-primary/30 mx-auto ring-4 ring-primary/10 ring-offset-4 ring-offset-background">
+              <AvatarImage src="/placeholder.svg" alt="Charisse Priego" />
+              <AvatarFallback className="text-2xl font-serif bg-gradient-to-br from-primary to-accent text-primary-foreground">CP</AvatarFallback>
+            </Avatar>
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-0 border-2 border-dashed border-primary/20 rounded-full"
+            />
+          </div>
         </motion.div>
 
         <motion.p 
           initial={{ opacity: 0, letterSpacing: "0.2em" }}
           animate={{ opacity: 1, letterSpacing: "0.4em" }}
           transition={{ duration: 1.2, delay: 0.3 }}
-          className="text-muted-foreground uppercase text-xs md:text-sm mb-8"
+          className="text-primary uppercase text-xs md:text-sm mb-8 font-medium"
         >
           A Humble Request for Support
         </motion.p>
@@ -138,7 +152,7 @@ const Hero = () => {
             initial={{ y: 100 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-foreground"
+            className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium text-foreground"
           >
             Help Me Experience
           </motion.h1>
@@ -148,7 +162,7 @@ const Hero = () => {
             initial={{ y: 100 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="font-serif text-5xl md:text-7xl lg:text-8xl font-light italic text-foreground"
+            className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium italic bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
           >
             The World Beyond
           </motion.h1>
@@ -173,7 +187,7 @@ const Hero = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.5 }}
         onClick={scrollToAbout}
-        className="absolute bottom-12 text-muted-foreground hover:text-foreground transition-colors group"
+        className="absolute bottom-12 text-muted-foreground hover:text-primary transition-colors group"
         aria-label="Scroll to learn more"
       >
         <div className="flex flex-col items-center gap-2">
