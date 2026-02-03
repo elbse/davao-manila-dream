@@ -1,5 +1,66 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+
+const TOUR_DATE = new Date("2026-03-03T00:00:00");
+
+const Countdown = () => {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const now = new Date();
+      const difference = TOUR_DATE.getTime() - now.getTime();
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60),
+        });
+      }
+    };
+
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const timeUnits = [
+    { label: "Days", value: timeLeft.days },
+    { label: "Hours", value: timeLeft.hours },
+    { label: "Minutes", value: timeLeft.minutes },
+    { label: "Seconds", value: timeLeft.seconds },
+  ];
+
+  return (
+    <div className="flex gap-4 md:gap-6 justify-center mt-8">
+      {timeUnits.map((unit, index) => (
+        <motion.div
+          key={unit.label}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.4 + index * 0.1 }}
+          className="text-center"
+        >
+          <div className="bg-foreground text-background font-serif text-2xl md:text-4xl w-14 h-14 md:w-20 md:h-20 flex items-center justify-center">
+            {String(unit.value).padStart(2, "0")}
+          </div>
+          <p className="text-xs uppercase tracking-wider text-muted-foreground mt-2">
+            {unit.label}
+          </p>
+        </motion.div>
+      ))}
+    </div>
+  );
+};
 
 const Hero = () => {
   const scrollToAbout = () => {
@@ -50,6 +111,19 @@ const Hero = () => {
         transition={{ duration: 1, ease: "easeOut" }}
         className="text-center max-w-4xl mx-auto relative z-10"
       >
+        {/* Avatar */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mb-6"
+        >
+          <Avatar className="w-24 h-24 md:w-28 md:h-28 border-2 border-foreground/20 mx-auto">
+            <AvatarImage src="/placeholder.svg" alt="Charisse Priego" />
+            <AvatarFallback className="text-2xl font-serif bg-foreground text-background">CP</AvatarFallback>
+          </Avatar>
+        </motion.div>
+
         <motion.p 
           initial={{ opacity: 0, letterSpacing: "0.2em" }}
           animate={{ opacity: 1, letterSpacing: "0.4em" }}
@@ -80,24 +154,18 @@ const Hero = () => {
           </motion.h1>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="inline-block"
-        >
-          {/*  */}
-        </motion.div>
-
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed mt-10"
+          className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed mt-6"
         >
           Supporting a Computer Science student's educational journey to Manila
           for industry exposure and cultural immersion.
         </motion.p>
+
+        {/* Countdown Timer */}
+        <Countdown />
       </motion.div>
 
       <motion.button
