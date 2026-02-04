@@ -34,7 +34,7 @@ const Donate = () => {
       id="donate"
       className="py-32 px-6 bg-gradient-to-b from-secondary to-background relative overflow-hidden"
     >
-      {/* Animated background orbs */}
+      
       <motion.div
         animate={{ 
           scale: [1, 1.3, 1],
@@ -95,7 +95,7 @@ const Donate = () => {
             {/* QR Code */}
             <div className="w-72 h-72 md:w-80 md:h-80 mx-auto mb-8 bg-white p-4 rounded-xl shadow-2xl">
               <img
-                src="/qr-code.jpg"
+                src="/QR-Gcash.jpg"
                 alt="GCash QR Code"
                 className="w-full h-full object-contain"
               />
